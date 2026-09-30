@@ -1,0 +1,667 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #071018;
+
+    color: #e8f0f5;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    height: 90px;
+
+    padding: 0 30px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #0b1720;
+
+    border-bottom: 1px solid #20313d;
+}
+
+header h1 {
+
+    margin: 0;
+
+    font-size: 22px;
+
+    letter-spacing: 1px;
+}
+
+header p {
+
+    margin: 5px 0 0;
+
+    color: #7f96a5;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   MACHINE BUTTONS
+========================= */
+
+.machine-selector {
+
+    display: flex;
+
+    gap: 8px;
+}
+
+.machine {
+
+    background: #101f29;
+
+    border: 1px solid #2a414f;
+
+    color: #9db0bc;
+
+    padding: 10px 15px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.machine:hover {
+
+    border-color: #3c9bd3;
+}
+
+.machine.active {
+
+    background: #0b5d85;
+
+    color: white;
+
+    border-color: #0b9ddd;
+}
+
+
+/* =========================
+   KPI
+========================= */
+
+.kpis {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    padding: 20px 30px;
+}
+
+.kpi {
+
+    background: #0d1b24;
+
+    border: 1px solid #223642;
+
+    border-radius: 8px;
+
+    padding: 18px;
+}
+
+.kpi span {
+
+    display: block;
+
+    color: #8299a6;
+
+    font-size: 13px;
+}
+
+.kpi strong {
+
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 30px;
+}
+
+.kpi.green strong {
+    color: #22c55e;
+}
+
+.kpi.yellow strong {
+    color: #f59e0b;
+}
+
+.kpi.red strong {
+    color: #ef4444;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 360px;
+
+    gap: 20px;
+
+    padding: 0 30px 30px;
+}
+
+
+/* =========================
+   MAP
+========================= */
+
+.map-section {
+
+    background: #0b1720;
+
+    border: 1px solid #223642;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+.section-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid #223642;
+}
+
+.section-title h2 {
+
+    margin: 0;
+
+    font-size: 17px;
+}
+
+.section-title p {
+
+    margin: 4px 0 0;
+
+    color: #718692;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   LEGEND
+========================= */
+
+.legend {
+
+    display: flex;
+
+    gap: 15px;
+
+    font-size: 12px;
+
+    color: #9badb8;
+}
+
+.legend span {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+.legend-dot {
+
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+}
+
+.legend-dot.green {
+    background: #22c55e;
+}
+
+.legend-dot.yellow {
+    background: #f59e0b;
+}
+
+.legend-dot.red {
+    background: #ef4444;
+}
+
+
+/* =========================
+   MACHINE IMAGE
+========================= */
+
+.machine-map {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 650px;
+
+    background: #050b10;
+
+    overflow: hidden;
+}
+
+.machine-image {
+
+    width: 100%;
+
+    height: 100%;
+
+    min-height: 650px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* =========================
+   LUBRICATION POINT
+========================= */
+
+.lubrication-point {
+
+    position: absolute;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 50%;
+
+    border: 3px solid white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 8px rgba(0,0,0,.8);
+
+    transition:
+        transform .15s,
+        box-shadow .15s;
+}
+
+.lubrication-point:hover {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.25);
+
+    z-index: 20;
+
+    box-shadow:
+        0 0 15px white;
+}
+
+.lubrication-point.green {
+
+    background: #16a34a;
+}
+
+.lubrication-point.yellow {
+
+    background: #d97706;
+}
+
+.lubrication-point.red {
+
+    background: #dc2626;
+
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0% {
+        box-shadow:
+            0 0 5px #ef4444;
+    }
+
+    50% {
+        box-shadow:
+            0 0 20px #ef4444;
+    }
+
+    100% {
+        box-shadow:
+            0 0 5px #ef4444;
+    }
+}
+
+
+/* =========================
+   DETAIL PANEL
+========================= */
+
+.detail-panel {
+
+    background: #0b1720;
+
+    border: 1px solid #223642;
+
+    border-radius: 8px;
+
+    padding: 22px;
+
+    min-height: 500px;
+}
+
+.empty-icon {
+
+    font-size: 50px;
+
+    text-align: center;
+
+    margin-top: 100px;
+
+    opacity: .25;
+}
+
+#emptyPanel h2 {
+
+    text-align: center;
+
+    font-size: 18px;
+}
+
+#emptyPanel p {
+
+    text-align: center;
+
+    color: #718692;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* =========================
+   DETAIL
+========================= */
+
+.point-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.small-title {
+
+    color: #718692;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+.point-header h2 {
+
+    margin: 5px 0 0;
+
+    font-size: 24px;
+}
+
+.status {
+
+    padding: 7px 12px;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+.status.green {
+
+    background: #14532d;
+
+    color: #4ade80;
+}
+
+.status.yellow {
+
+    background: #713f12;
+
+    color: #fbbf24;
+}
+
+.status.red {
+
+    background: #7f1d1d;
+
+    color: #f87171;
+}
+
+
+.detail-item {
+
+    border-bottom:
+        1px solid #1e303b;
+
+    padding: 12px 0;
+}
+
+.detail-item span,
+.detail-grid span,
+.observation span {
+
+    display: block;
+
+    color: #718692;
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+}
+
+.detail-item strong {
+
+    font-size: 14px;
+}
+
+
+.detail-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.detail-grid div {
+
+    background: #101f29;
+
+    padding: 12px;
+
+    border-radius: 5px;
+}
+
+
+.observation {
+
+    margin-top: 20px;
+
+    background: #101f29;
+
+    padding: 12px;
+
+    border-radius: 5px;
+}
+
+.observation p {
+
+    margin: 0;
+
+    color: #b6c5cd;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.register-button {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 13px;
+
+    border: 0;
+
+    border-radius: 5px;
+
+    background: #087db3;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.register-button:hover {
+
+    background: #0995d0;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 15px;
+
+    color: #526a77;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    main {
+
+        grid-template-columns: 1fr;
+    }
+
+    .kpis {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    header {
+
+        height: auto;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        align-items: flex-start;
+    }
+
+    .kpis {
+
+        grid-template-columns: 1fr;
+    }
+
+    main {
+
+        padding: 0 10px 20px;
+    }
+
+}
