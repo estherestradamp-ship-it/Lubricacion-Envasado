@@ -2,22 +2,37 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Lubricación - Envasado</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="style.css">
+
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     ENCABEZADO
+     ===================================================== -->
 
 <header>
 
     <div>
+
         <h1>LUBRICATION CONTROL CENTER</h1>
+
         <p>Área de Envasado</p>
+
     </div>
+
 
     <div class="machine-selector">
 
@@ -38,223 +53,438 @@
 </header>
 
 
-<!-- KPIs -->
+
+<!-- =====================================================
+     KPI
+     ===================================================== -->
 
 <section class="kpis">
 
+
     <div class="kpi">
+
         <span>Total puntos</span>
-        <strong id="totalPuntos">29</strong>
+
+        <strong id="totalPuntos">0</strong>
+
     </div>
+
+
 
     <div class="kpi green">
+
         <span>OK</span>
+
         <strong id="puntosOK">0</strong>
+
     </div>
+
+
 
     <div class="kpi yellow">
+
         <span>Próximos</span>
+
         <strong id="puntosProximos">0</strong>
+
     </div>
 
+
+
     <div class="kpi red">
+
         <span>Vencidos</span>
+
         <strong id="puntosVencidos">0</strong>
+
     </div>
+
 
 </section>
 
 
-<!-- MAPA -->
+
+<!-- =====================================================
+     CONTENIDO PRINCIPAL
+     ===================================================== -->
 
 <main>
 
+
+
+    <!-- =================================================
+         MAPA
+         ================================================= -->
+
     <section class="map-section">
+
 
         <div class="section-title">
 
+
             <div>
+
                 <h2>Mapa de lubricación</h2>
+
                 <p>Etiquetadora</p>
+
             </div>
+
+
+
+            <!-- LEYENDA DE ESTADOS -->
 
             <div class="legend">
 
                 <span>
+
                     <i class="legend-dot green"></i>
+
                     OK
+
                 </span>
 
+
                 <span>
+
                     <i class="legend-dot yellow"></i>
+
                     Próximo
+
                 </span>
 
+
                 <span>
+
                     <i class="legend-dot red"></i>
+
                     Vencido
+
                 </span>
 
             </div>
 
+
         </div>
 
 
-        <div class="machine-map">
 
-            <!-- Imagen de la etiquetadora -->
+        <!-- =================================================
+             HERRAMIENTAS PARA COLOCAR PUNTOS
+             ================================================= -->
+
+        <div class="map-toolbar">
+
+
+            <!-- ACTIVAR MODO UBICACIÓN -->
+
+            <button
+                id="btnModoUbicacion"
+                onclick="activarModoUbicacion()">
+
+                📍 Modo ubicación
+
+            </button>
+
+
+
+            <!-- SELECCIONAR COMPONENTE -->
+
+            <select id="selectorComponente">
+
+                <option value="">
+
+                    Seleccionar componente...
+
+                </option>
+
+            </select>
+
+
+
+            <!-- COPIAR COORDENADAS -->
+
+            <button onclick="copiarPuntos()">
+
+                📋 Copiar código
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             MAPA DE LA ETIQUETADORA
+             ================================================= -->
+
+        <div
+            class="machine-map"
+            id="machineMap">
+
+
+            <!-- IMAGEN -->
 
             <img
+                id="machineImage"
                 src="images/etiquetadora.png"
                 class="machine-image"
                 alt="Mapa de lubricación de etiquetadora"
             >
 
-            <!-- Aquí JavaScript colocará los 29 puntos -->
 
-            <div id="lubricationPoints"></div>
+
+            <!-- AQUÍ JAVASCRIPT COLOCA LOS PUNTOS -->
+
+            <div
+                id="lubricationPoints">
+            </div>
+
 
         </div>
+
+
 
     </section>
 
 
-    <!-- PANEL DE DETALLE -->
 
-    <aside class="detail-panel">
+    <!-- =================================================
+         PANEL DE INFORMACIÓN
+         ================================================= -->
+
+    <aside
+        class="detail-panel"
+        id="detailPanel">
+
+
+        <!-- PANEL INICIAL -->
 
         <div id="emptyPanel">
 
+
             <div class="empty-icon">
+
                 ⚙
+
             </div>
 
-            <h2>Seleccione un punto</h2>
+
+            <h2>
+
+                Seleccione un punto
+
+            </h2>
+
 
             <p>
-                Haga clic sobre un punto de lubricación
-                para consultar su información.
+
+                Active el modo ubicación para colocar
+                los puntos o haga clic sobre un punto
+                existente para consultar su información.
+
             </p>
+
 
         </div>
 
 
-        <div id="pointPanel" class="hidden">
+        <!-- AQUÍ JAVASCRIPT MOSTRARÁ EL DETALLE -->
+
+        <div id="pointPanel"
+             class="hidden">
+
 
             <div class="point-header">
+
 
                 <div>
 
                     <span class="small-title">
+
                         PUNTO DE LUBRICACIÓN
+
                     </span>
 
+
                     <h2 id="pointNumber">
-                        Punto 01
+
+                        Punto
+
                     </h2>
 
                 </div>
 
-                <div id="pointStatus"
-                     class="status">
+
+
+                <div
+                    id="pointStatus"
+                    class="status">
+
                     OK
+
                 </div>
 
+
             </div>
 
 
+
+            <!-- COMPONENTE -->
+
             <div class="detail-item">
 
-                <span>Componente</span>
+                <span>
+                    Componente
+                </span>
 
                 <strong id="component">
+
                     -
+
                 </strong>
 
             </div>
 
 
+
+            <!-- LUBRICANTE -->
+
             <div class="detail-item">
 
-                <span>Lubricante</span>
+                <span>
+                    Lubricante
+                </span>
 
                 <strong id="lubricant">
+
                     -
+
                 </strong>
 
             </div>
 
 
+
+            <!-- CANTIDAD -->
+
             <div class="detail-item">
 
-                <span>Cantidad</span>
+                <span>
+                    Cantidad
+                </span>
 
                 <strong id="quantity">
+
                     -
+
                 </strong>
 
             </div>
 
+
+
+            <!-- FRECUENCIA -->
 
             <div class="detail-item">
 
-                <span>Frecuencia</span>
+                <span>
+                    Frecuencia
+                </span>
 
                 <strong id="frequency">
+
                     -
+
                 </strong>
 
             </div>
 
+
+
+            <!-- FECHAS -->
 
             <div class="detail-grid">
 
+
                 <div>
 
-                    <span>Última</span>
+                    <span>
+                        Última
+                    </span>
 
                     <strong id="lastDate">
+
                         -
+
                     </strong>
 
                 </div>
+
+
 
                 <div>
 
-                    <span>Próxima</span>
+                    <span>
+                        Próxima
+                    </span>
 
                     <strong id="nextDate">
+
                         -
+
                     </strong>
 
                 </div>
+
 
             </div>
 
 
+
+            <!-- OBSERVACIÓN -->
+
             <div class="observation">
 
-                <span>Observación</span>
+                <span>
+                    Observación
+                </span>
+
 
                 <p id="observation">
+
                     -
+
                 </p>
 
             </div>
 
 
-            <button class="register-button">
+
+            <!-- REGISTRO -->
+
+            <button
+                class="register-button">
 
                 REGISTRAR LUBRICACIÓN
 
             </button>
 
+
         </div>
+
 
     </aside>
 
+
 </main>
 
+
+
+<!-- =====================================================
+     PIE
+     ===================================================== -->
 
 <footer>
 
@@ -264,7 +494,13 @@
 </footer>
 
 
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
 <script src="app.js"></script>
+
 
 </body>
 
